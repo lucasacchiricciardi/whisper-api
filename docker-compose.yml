@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  whisper-api:
+    build: .
+    container_name: whisper-api
+    ports:
+      - "5001:5001"
+    environment:
+      WHISPER_API_HOST: "0.0.0.0"
+      WHISPER_API_PORT: "5001"
+      LOG_LEVEL: "INFO"
+    volumes:
+      - whisper-cache:/home/app/.cache
+    restart: unless-stopped
+    network_mode: host
+    # GPU support (uncomment for ROCm/CUDA)
+    # devices:
+    #   - /dev/kfd
+    #   - /dev/dri
+
+volumes:
+  whisper-cache:
+    driver: local
