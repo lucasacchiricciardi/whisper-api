@@ -2,6 +2,7 @@
 
 ## Stato
 🟢 OPERATIVO — servizio attivo su 192.168.254.115:5001, trascrizione testata con 3 modelli (small, medium, large-v3-turbo).
+✅ Repository GitHub public (MIT license): https://github.com/lucasacchiricciardi/whisper-api
 
 ## Deploy
 - **Host**: server LLM (192.168.254.115) — `/opt/whisper-api/`
