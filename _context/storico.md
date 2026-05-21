@@ -1,5 +1,13 @@
 # Whisper API — Storico
 
+## 2026-05-13
+
+- **Overload con file grossi su CPU**: tentativo trascrizione MP3 di 2h 49m (corso Beggiato Claude Code, 201 MB) con modello `medium` → server **bloccato** dopo ~10 min, nessun output, container ancora "Up" ma servizio non risponde.
+- **Reboot server llm**: dopo blocco, reboot completo del server llm (192.168.254.115). Servizi tornati online in ~30 sec.
+- **Pattern chunked transcription**: per file > 1h va splittato con `ffmpeg -f segment -segment_time 1800 -c copy` (segmenti da 30 min, no re-encode). Trascrizione sequenziale di ogni chunk via `curl http://127.0.0.1:5001/transcribe?model=small` (chiamata localhost dal server, no network overhead). Concatenazione finale dei campi `text` dei JSON.
+- **Lesson SIGHUP**: lanciare loop bash via `ssh remote "for chunk in ...; do curl ...; done"` viene killato da SIGHUP alla chiusura SSH. Soluzione: `nohup bash -c '...' </dev/null > /dev/null 2>&1 & disown`.
+- **Trascrizione corso Beggiato** in corso: 6 chunks da 30 min, modello `small`, in `/tmp/corso-trans/` su llm. Lanciata 2026-05-13 12:05 CEST, ETA 12:55 CEST.
+
 ## 2026-05-04
 
 - **Creazione servizio**: nato dalla necessità di trascrizione audio per il TikTok Downloader. Ollama 0.22.1 non supporta `/api/transcribe`.

@@ -21,6 +21,8 @@
 1. Valutare accelerazione GPU ROCm (attualmente gira su CPU/int8)
 2. Aggiungere autenticazione API (token bearer) se esposto fuori LAN
 3. Valutare auto-unload modelli dopo timeout di inattività
+4. **Documentare pattern chunked transcription** in README (ffmpeg split + loop sequenziale) — necessario per file > 1h su CPU
+5. **Valutare timeout/health-check più aggressivi** sul container (oggi server resta "Up" anche se servizio è freezed)
 
 ## Note tecniche
 - Il container gira su **CPU** (int8) perché PyTorch nel container è build CUDA e non vede la GPU AMD
