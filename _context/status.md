@@ -31,4 +31,9 @@
 - I modelli Whisper GGUF sono stati rimossi da Ollama (inutili)
 
 ## Ultimo aggiornamento
-2026-05-04
+2026-05-27 — operativo su CPU int8; prossima azione GPU ROCm per migrazione shortcutter + performance
+
+## Status aggiunto per contesto
+- ✅ Servizio operativo 192.168.254.115:5001 (CPU-based, latenza accettabile per ora)
+- 🔲 GPU ROCm acceleration (prerequisito per: shortcutter Fase 1 stabilizzazione + twinscribe deploy + tiktok-downloader production)
+- 🔲 Documentazione chunked transcription pattern (ffmpeg split + loop sequenziale per file >1h)
