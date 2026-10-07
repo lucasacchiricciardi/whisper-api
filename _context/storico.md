@@ -1,5 +1,16 @@
 # Whisper API — Storico
 
+## 2026-10-07
+
+- **La GPU è scartata**: il container girava su CPU senza dirlo (torch CUDA, ctranslate2 senza HIP). La wheel ROCm
+  ufficiale di CTranslate2 4.8.2 sulla 7900 XTX carica il modello ma produce testo sbagliato; `int8_float16` dà un fault
+  della GPU, che è condivisa con llama-swap. Decisione di Luca: si resta su CPU.
+- **Arriva `parakeet`** (Parakeet TDT 0.6B v3, ONNX int8 solo pesi), misurato contro `medium` con criteri fissati prima:
+  3,8-4,2 volte più veloce, nessun parlato saltato su 57 minuti, meno errori sui nomi propri. In produzione e usato da
+  tutti i chiamanti.
+- ⚠️ Quelle modifiche stanno nel repo Gitea `LogWhispererAI/whisper-api`, che è il codice in esercizio. Questo repo
+  GitHub ha un'altra storia ed è rimasto a maggio: quale tenere è aperto (INV-0087 nel workspace).
+
 ## 2026-05-13
 
 - **Overload con file grossi su CPU**: tentativo trascrizione MP3 di 2h 49m (corso Beggiato Claude Code, 201 MB) con modello `medium` → server **bloccato** dopo ~10 min, nessun output, container ancora "Up" ma servizio non risponde.
