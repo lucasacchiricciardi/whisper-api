@@ -1,6 +1,7 @@
 # Whisper API — Status
 
 categoria: infra
+ambito: homelab-infra
 
 ## Stato
 🟢 OPERATIVO — servizio attivo su 192.168.254.115:5001, trascrizione testata con 3 modelli (small, medium, large-v3-turbo).
